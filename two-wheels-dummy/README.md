@@ -47,9 +47,9 @@
   - USB to mini USB
 
 ### Communication scheme:
+![image](https://user-images.githubusercontent.com/63670587/142772078-97749bba-52f6-4aeb-907b-dcc90311a886.png)
 
->   Missing a photo here
-
+### Practical usage guide
 #### Setup:
 - Start app 
 - Plug Arduino into android
@@ -76,11 +76,13 @@ f11 t4 f31 t2 r11 t4  # Go straight for 4 seconds then steer for 2 seconds then 
 f11s4t2s5r34t1        # It also works without spaces.
 ```
 
+### Resources
+
 #### Other interfacing alternatives that were attempted but discarded...
 - Accessing a terminal emulator in android and write straight to USB -> requires rooted phone
 - Accessing a terminal emulator in SSH and write commands to text file, then have an app send them to serial -> doable
-  - Creating such app with MIT App Inventor -> great idea, though painful debugging specially bc of my lack of knowledge on android
-  - Creating such app with Android Studio + libraries -> seemed quite promisingm though the Telnet thing came up and it was much easier 
+  - Creating such app with MIT App Inventor -> great idea, though painful debugging 
+  - Creating such app with Android Studio + libraries -> seemed quite promising, but the Telnet thing came up and it was much easier 
 
 #### Some tools and apps that were helpful through the process:
 - Serial USB Terminal: for straight serial communication android-arduino
