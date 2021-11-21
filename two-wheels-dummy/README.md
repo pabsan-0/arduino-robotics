@@ -59,7 +59,7 @@
 - Turn on powerbank to feed motors effectively
 - Start Telnet server from app
 - Connect to server
-  - Powershell (may require activation of Telnet in 'Turn Windows features on or off')
+  - Bash telnet / Powershell Telnet (may require activation of Telnet in 'Turn Windows features on or off')
   - Python interface
     ```
     from telnetlib import Telnet
@@ -86,9 +86,9 @@ f11s4t2s5r34t1        # It also works without spaces.
 
 #### Other interfacing alternatives that were attempted but discarded...
 - Accessing a terminal emulator in android and write straight to USB -> requires rooted phone
-- Accessing a terminal emulator in SSH and write commands to text file, then have an app send them to serial -> doable
-  - Creating such app with MIT App Inventor -> great idea, though painful debugging 
-  - Creating such app with Android Studio + libraries -> seemed quite promising, but the Telnet thing came up and it was much easier 
+- Accessing a terminal emulator in SSH and write commands to text file, then have an app send them to serial
+  - Creating such app with MIT App Inventor -> great idea, painful debugging 
+  - Creating such app with Android Studio + libraries -> seemed quite promising, untested
 
 #### Some tools and apps that were helpful through the process:
 - [Server Bridge X](https://play.google.com/store/apps/details?id=com.cidtepole.serverbridge&hl=en&gl=US): To link the phone's serial to a Telnet server. This is our interfacing of choice.
