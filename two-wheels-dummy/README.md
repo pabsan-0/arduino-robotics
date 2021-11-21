@@ -7,7 +7,6 @@
 - [x] Wireless manual control
 
 
-
 ## Version 1. First build
 
 ### Overview:
@@ -37,11 +36,15 @@
 
 ### Overview:
 
+<img src="https://user-images.githubusercontent.com/63670587/142772383-b2b5fba5-edd7-40c9-83e4-dd4ace7062e0.png" alt="drawing" height="350"/>  <img src="https://user-images.githubusercontent.com/63670587/142772391-022ecb7e-26da-4e8e-90cb-f0def1ce7f10.png" alt="drawing" height="350"/> 
+
+
+
 ### Components:
 - All of the base components from first build 
 - Android phone (must support OTG)
 - Trailer hardware (simply to hold the phone)
-- USB Telnet Server App
+- [Server Bridge X app](https://play.google.com/store/apps/details?id=com.cidtepole.serverbridge&hl=en&gl=US) to link server with phone's serial
 - Wiring:
   - USB type C to USB
   - USB to mini USB
@@ -58,15 +61,18 @@
 - Connect to server
   - Powershell (may require activation of Telnet in 'Turn Windows features on or off')
   - Python interface
+    ```
+    from telnetlib import Telnet
+    with Telnet('192.168.1.10', '1234') as tn:
+      tn.interact()
+    ```
 
 #### Interfacing and controls:
-Commands are received via serial and parsed one character at once. The telnet server only takes them from a remote terminal to the serial bus.
-
+Commands are received in the Arduino via serial and parsed one character at a time. The telnet server only takes input from a remote terminal to the phone serial bus, so the input in the remote terminal is the same as it would be through a direct serial connection.
 - `f [L] [R]`: set forward mode. Set relative number of revolutions between the left and right wheels to control steering.
 - `r [L] [R]`: set reverse mode. Set relative number of revolutions between the left and right wheels to control steering.
 - `s [rpm]`: set a base speed in RPM. The range 3-15 seems to work for the setup.
 - `t [sec]`: Move in the specified direction for a number of seconds.
-
 Example valid commands:
 ```
 f11                   # Set straight forward direction.
@@ -76,7 +82,7 @@ f11 t4 f31 t2 r11 t4  # Go straight for 4 seconds then steer for 2 seconds then 
 f11s4t2s5r34t1        # It also works without spaces.
 ```
 
-### Resources
+### Resources:
 
 #### Other interfacing alternatives that were attempted but discarded...
 - Accessing a terminal emulator in android and write straight to USB -> requires rooted phone
@@ -85,7 +91,8 @@ f11s4t2s5r34t1        # It also works without spaces.
   - Creating such app with Android Studio + libraries -> seemed quite promising, but the Telnet thing came up and it was much easier 
 
 #### Some tools and apps that were helpful through the process:
-- Serial USB Terminal: for straight serial communication android-arduino
-- SSH helper: for SSHing to the phone easily
-- Termux: capable bash terminal on android
-- MIT App inventor: GUI for creating apps easily. Its a pain to debug though (long compilation + Abstracted GUI)
+- [Server Bridge X](https://play.google.com/store/apps/details?id=com.cidtepole.serverbridge&hl=en&gl=US): To link the phone's serial to a Telnet server. This is our interfacing of choice.
+- [Serial USB Terminal](https://play.google.com/store/apps/details?id=de.kai_morich.serial_usb_terminal&hl=en&gl=US): for straight serial communication android-arduino
+- [SSH helper](https://play.google.com/store/apps/details?id=com.arachnoid.sshelper&hl=en&gl=US): for SSHing to the phone easily
+- [Termux](https://termux.com/): capable bash terminal on android
+- [MIT App inventor](https://appinventor.mit.edu/): GUI for creating apps easily. Its a pain to debug though (long compilation + Abstracted GUI)
